@@ -14,7 +14,7 @@ export default ProductList;
 
 const styles = StyleSheet.create({
   products: {
-    marginTop: 40,
+    marginTop: 10,
     display: "flex",
     justifyContent: "center",
     flexDirection: "row",

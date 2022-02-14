@@ -22,6 +22,7 @@ const Details = () => {
         <Text style={styles.shopTitle}>{shop.name}</Text>
         <Image source={{ uri: shop.image }} style={styles.shopDetailImage} />
         <View>
+          <Text style={styles.prodText}>Products:</Text>
           <ProductList products={shop.products} />
         </View>
       </SafeAreaView>
@@ -38,6 +39,11 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginTop: 10,
     borderWidth: 5,
+  },
+  prodText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginLeft: 10,
   },
   container: {
     flex: 1,

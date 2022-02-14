@@ -5,7 +5,7 @@ import { NativeBaseProvider } from "native-base";
 import Details from "../components/Shops/Details";
 
 const image = {
-  uri: "https://www.1000rhan.com/image/DSC_2770.jpg",
+  uri: "https://html.sammy-codes.com/images/background.jpg",
 };
 
 const Home = () => {
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   appbar: {
-    backgroundColor: "#52B4D1",
+    backgroundColor: "#D67D3E",
     height: 100,
     width: "100%",
   },
