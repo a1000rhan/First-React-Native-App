@@ -3,18 +3,27 @@ import { StyleSheet, Text, SafeAreaView, Image } from "react-native";
 import shopStore from "../../Store/shopStore";
 import ProductList from "../Products/ProductList";
 import { observer } from "mobx-react";
-import { View } from "native-base";
+import { Spinner, View } from "native-base";
 
 const Details = () => {
+  if (shopStore.loading) {
+    return (
+      <View style={styles.container}>
+        <Spinner />
+      </View>
+    );
+  }
   const shop = shopStore.shops[0];
   console.log(shop);
 
   return (
-    <View style={styles.container}>
+    <View>
       <SafeAreaView>
-        <Text>{shop.name}</Text>
+        <Text style={styles.shopTitle}>{shop.name}</Text>
         <Image source={{ uri: shop.image }} style={styles.shopDetailImage} />
-        <ProductList products={shop.products} />
+        <View>
+          <ProductList products={shop.products} />
+        </View>
       </SafeAreaView>
     </View>
   );
@@ -26,11 +35,20 @@ const styles = StyleSheet.create({
   shopDetailImage: {
     width: 150,
     height: 150,
+    alignSelf: "center",
+    marginTop: 10,
+    borderWidth: 5,
   },
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  shopTitle: {
+    width: "100%",
+    backgroundColor: "white",
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });

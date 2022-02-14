@@ -3,6 +3,7 @@ import api from "./api";
 
 class ShopStore {
   shops = [];
+  loading = true;
   constructor() {
     makeAutoObservable(this);
   }
@@ -11,6 +12,7 @@ class ShopStore {
     try {
       const res = await api.get("/shops");
       this.shops = res.data;
+      this.loading = false;
     } catch (e) {
       console.log(e);
     }

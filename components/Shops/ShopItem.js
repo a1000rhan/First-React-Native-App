@@ -8,6 +8,7 @@ const ShopItem = ({ shop, navigation }) => {
       <Image style={styles.shopImage} source={{ uri: shop.image }} />
       <Text style={styles.textShop}>{shop.name}</Text>
       <Button
+        style={styles.button}
         onPress={() => {
           Alert.alert("Shops");
         }}
@@ -33,5 +34,9 @@ const styles = StyleSheet.create({
   textShop: {
     fontSize: 30,
     textAlign: "center",
+  },
+  button: {
+    width: "50%",
+    alignSelf: "center",
   },
 });
