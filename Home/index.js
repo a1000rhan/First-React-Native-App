@@ -4,18 +4,14 @@ import ShopList from "../components/Shops/ShopList";
 import { NativeBaseProvider } from "native-base";
 import Details from "../components/Shops/Details";
 
-const image = {
-  uri: "https://html.sammy-codes.com/images/background.jpg",
-};
-
 const Home = () => {
   return (
     <NativeBaseProvider style={styles.container}>
-      <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+      <View style={styles.image}>
         <View style={styles.appbar} />
         {/* <ShopList /> */}
         <Details />
-      </ImageBackground>
+      </View>
     </NativeBaseProvider>
   );
 };
@@ -29,20 +25,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  bottom: {
-    backgroundColor: "#52B4D1",
-    position: "absolute",
-    left: 0,
-    right: 0,
-    bottom: 0,
-  },
+
   appbar: {
-    backgroundColor: "#D67D3E",
+    backgroundColor: "#9C0F48",
     height: 100,
     width: "100%",
   },
   image: {
     flex: 1,
+    backgroundColor: "#D67D3E",
     justifyContent: "flex-start",
   },
 });

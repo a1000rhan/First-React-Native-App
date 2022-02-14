@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   shopTitle: {
     width: "100%",
-    backgroundColor: "white",
+    backgroundColor: "#F9E4D4",
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
