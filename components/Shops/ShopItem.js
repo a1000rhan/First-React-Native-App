@@ -1,20 +1,26 @@
 import React from "react";
 import { Button } from "native-base";
-import { StyleSheet, Text, SafeAreaView, Image, Alert } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  Image,
+  Alert,
+  Pressable,
+} from "react-native";
 
 const ShopItem = ({ shop, navigation }) => {
   return (
     <SafeAreaView>
-      <Image style={styles.shopImage} source={{ uri: shop.image }} />
-      <Text style={styles.textShop}>{shop.name}</Text>
-      <Button
-        style={styles.button}
+      <Pressable
+        style={styles.list}
         onPress={() => {
-          Alert.alert("Shops");
+          navigation.navigate("Details", { shop: shop });
         }}
       >
-        Click
-      </Button>
+        <Image style={styles.shopImage} source={{ uri: shop.image }} />
+        <Text style={styles.textShop}>{shop.name}</Text>
+      </Pressable>
     </SafeAreaView>
   );
 };
@@ -34,9 +40,18 @@ const styles = StyleSheet.create({
   textShop: {
     fontSize: 30,
     textAlign: "center",
+    marginRight: 30,
   },
   button: {
     width: "50%",
     alignSelf: "center",
+  },
+  list: {
+    display: "flex",
+    margin: 5,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderWidth: 2,
   },
 });

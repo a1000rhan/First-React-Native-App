@@ -4,8 +4,9 @@ import shopStore from "../../Store/shopStore";
 import ProductList from "../Products/ProductList";
 import { observer } from "mobx-react";
 import { Spinner, View } from "native-base";
+import CartButton from "../button/CartButton";
 
-const Details = () => {
+const Details = ({ route }) => {
   if (shopStore.loading) {
     return (
       <View style={styles.container}>
@@ -13,13 +14,13 @@ const Details = () => {
       </View>
     );
   }
-  const shop = shopStore.shops[0];
+
+  const shop = route.params.shop;
   console.log(shop);
 
   return (
     <View>
       <SafeAreaView>
-        <Text style={styles.shopTitle}>{shop.name}</Text>
         <Image source={{ uri: shop.image }} style={styles.shopDetailImage} />
         <View>
           <Text style={styles.prodText}>Products:</Text>
@@ -34,7 +35,7 @@ export default observer(Details);
 
 const styles = StyleSheet.create({
   shopDetailImage: {
-    width: 150,
+    width: "70%",
     height: 150,
     alignSelf: "center",
     marginTop: 10,
@@ -44,6 +45,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     marginLeft: 10,
+    marginTop: 20,
   },
   container: {
     flex: 1,
@@ -54,6 +56,8 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: "#F9E4D4",
     fontSize: 20,
+    height: 40,
+
     fontWeight: "bold",
     textAlign: "center",
   },

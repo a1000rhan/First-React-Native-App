@@ -1,39 +1,30 @@
+import { Button } from "native-base";
 import React from "react";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
-import ShopList from "../components/Shops/ShopList";
-import { NativeBaseProvider } from "native-base";
-import Details from "../components/Shops/Details";
 
-const Home = () => {
+const Home = ({ navigation }) => {
   return (
-    <NativeBaseProvider style={styles.container}>
-      <View style={styles.image}>
-        <View style={styles.appbar} />
-        {/* <ShopList /> */}
-        <Details />
-      </View>
-    </NativeBaseProvider>
+    <View>
+      <ImageBackground
+        source={{
+          uri: "http://www.krakowpost.com/wp-content/uploads/2018/03/closed-shop.jpg",
+        }}
+        style={{ width: "100%", height: "100%" }}
+      >
+        <Button style={styles.btn} onPress={() => navigation.navigate("Shops")}>
+          Lets Shop
+        </Button>
+      </ImageBackground>
+    </View>
   );
 };
 
 export default Home;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "rgba(100,100,100,1)",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  appbar: {
-    backgroundColor: "#9C0F48",
-    height: 100,
-    width: "100%",
-  },
-  image: {
-    flex: 1,
-    backgroundColor: "#D67D3E",
-    justifyContent: "flex-start",
+  btn: {
+    width: "50%",
+    alignSelf: "center",
+    top: "50%",
   },
 });
