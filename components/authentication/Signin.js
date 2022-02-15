@@ -17,7 +17,7 @@ const Signin = ({ navigation }) => {
   const handleSubmit = () => {
     console.log(user);
     authstore.signIn(user);
-    authstore.user && navigation.navigate("Shops");
+    authstore.user && navigation.replace("Shops");
   };
   return (
     <Stack space={4} w="100%" alignItems="center">

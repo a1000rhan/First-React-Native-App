@@ -75,5 +75,5 @@ class CartStore {
   };
 }
 const cartStore = new CartStore();
-// cartStore.fetchCart();
+cartStore.fetchCart();
 export default cartStore;
