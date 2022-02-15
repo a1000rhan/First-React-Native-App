@@ -1,63 +1,64 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
-import { Button, Center, VStack } from "native-base";
+import { Text, View } from "react-native";
+import { Avatar, Button, Center, VStack } from "native-base";
 import NumericInput from "react-native-numeric-input";
+import cartStore from "../../Store/cartStore";
+import styles from "./cartStyles";
+import { observer } from "mobx-react";
+import Icon from "react-native-vector-icons/FontAwesome";
 
-const CartItem = ({ cart }) => {
-  const [Qty, setQty] = useState(1);
+const CartItem = ({ item }) => {
+  const [quantity, setQuantity] = useState(item.quantity);
 
   const handleAdd = () => {
-    const newItem = { Qty, product: cart.product._id };
-    console.log("handleAdd -> newItem", newItem);
+    const newItem = {
+      product: item.product,
+      quantity: quantity,
+    };
+    cartStore.addItemToCart(newItem);
   };
+  const handleDelete = () => {
+    cartStore.removeItemFromCart(item.product._id);
+  };
+
   return (
-    <VStack space={4} alignItems="center">
+    <VStack>
       <Center style={styles.cartcontain} bg="#F5EEDC" rounded="md" shadow={3}>
         <View style={styles.cartItem}>
-          <Image style={styles.cartImag} source={{ uri: cart.product.image }} />
-          <Text style={styles.label}>{cart.product.name}</Text>
-          <Text style={styles.label2}>Price: {cart.product.price} KD</Text>
+          <Avatar
+            style={styles.cartImag}
+            source={{ uri: item.product.image }}
+          />
+          <Text style={styles.itemText}>{item.product.name}</Text>
+          <Text style={styles.priceAndQ}>Price: {item.product.price} KD</Text>
+
           <NumericInput
-            value={Qty}
+            value={quantity}
             rounded
             totalHeight={30}
             totalWidth={60}
-            initValue={1}
-            name={cart.product._id}
-            onChange={setQty}
+            onChange={(value) => setQuantity(value)}
           />
-          <Button onPress={handleAdd}>Add</Button>
+          <View style={styles.Btn}>
+            <Icon.Button
+              name="plus"
+              size={20}
+              onPress={handleAdd}
+              backgroundColor="#52B4D1"
+            />
+          </View>
+          <View style={styles.Btn}>
+            <Icon.Button
+              name="trash"
+              backgroundColor="red"
+              size={20}
+              onPress={handleDelete}
+            />
+          </View>
         </View>
       </Center>
     </VStack>
   );
 };
 
-export default CartItem;
-
-const styles = StyleSheet.create({
-  cartItem: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    alignSelf: "stretch",
-  },
-  cartImag: {
-    width: 50,
-    height: 50,
-  },
-  cartcontain: {
-    width: "100%",
-    margin: 5,
-    alignItems: "flex-start",
-    justifyContent: "space-between",
-  },
-  label: {
-    fontWeight: "bold",
-    marginLeft: 10,
-  },
-  label2: {
-    marginLeft: 10,
-  },
-});
+export default observer(CartItem);

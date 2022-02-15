@@ -1,17 +1,30 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  SafeAreaView,
+  Pressable,
+} from "react-native";
+import cartStore from "../../Store/cartStore";
 
 const ProductItem = ({ product }) => {
+  const handlePress = () => {
+    cartStore.addItemToCart(product._id);
+  };
   return (
     <View>
-      <Text style={styles.productName}>{product.name}</Text>
-      <Image
-        source={{
-          uri: product.image,
-        }}
-        alt="image"
-        style={styles.productImage}
-      />
+      <Pressable onPress={handlePress}>
+        <Text style={styles.productName}>{product.name}</Text>
+        <Image
+          source={{
+            uri: product.image,
+          }}
+          alt="image"
+          style={styles.productImage}
+        />
+      </Pressable>
     </View>
   );
 };
