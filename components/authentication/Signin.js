@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import authstore from "../../Store/authStore";
 
-const Signin = () => {
+const Signin = ({ navigation }) => {
   const [user, setUser] = useState({ username: "", password: "" });
 
   const handleUsername = (event) => {
@@ -16,7 +16,8 @@ const Signin = () => {
 
   const handleSubmit = () => {
     console.log(user);
-    // authstore.signIn(user);
+    authstore.signIn(user);
+    authstore.user && navigation.navigate("Shops");
   };
   return (
     <Stack space={4} w="100%" alignItems="center">
@@ -26,6 +27,7 @@ const Signin = () => {
             <FormControl.Label>Username</FormControl.Label>
             <Input
               onChangeText={handleUsername}
+              value={user.username}
               variant="underlined"
               p={2}
               placeholder="Username"
@@ -36,6 +38,7 @@ const Signin = () => {
             <Input
               onChangeText={handlePassword}
               variant="underlined"
+              value={user.password}
               p={2}
               type="password"
               placeholder="Password"

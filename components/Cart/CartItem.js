@@ -30,7 +30,7 @@ const CartItem = ({ item }) => {
             source={{ uri: item.product.image }}
           />
           <Text style={styles.itemText}>{item.product.name}</Text>
-          <Text style={styles.priceAndQ}>Price: {item.product.price} KD</Text>
+          <Text style={styles.priceAndQ}>Price: {item.product.price}, KD</Text>
 
           <NumericInput
             value={quantity}

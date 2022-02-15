@@ -10,5 +10,12 @@ const styles = StyleSheet.create({
   productName: {
     fontSize: 20,
   },
-  productImage: { width: 100, height: 100, marginRight: 20, borderWidth: 5 },
+  productImage: {
+    width: 100,
+    height: 100,
+    marginRight: 20,
+    borderWidth: 5,
+  },
 });
+
+export default styles;

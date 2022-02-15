@@ -9,11 +9,11 @@ class AuthStore {
   constructor() {
     makeAutoObservable(this, {});
   }
-  //   setUser = (token) => {
-  //     // localStorage.setItem("myToken", token);
-  //     api.defaults.headers.common.Authorization = `Bearer ${token}`;
-  //     this.user = decode(token);
-  //   };
+  setUser = (token) => {
+    // localStorage.setItem("myToken", token);
+    //   api.defaults.headers.common.Authorization = `Bearer ${token}`;
+    this.user = decode(token);
+  };
   //   checkForToken = () => {
   //     const token = localStorage.getItem("myToken");
   //     if (token) {
@@ -29,24 +29,24 @@ class AuthStore {
   signIn = async (user) => {
     try {
       const resp = await api.post("/signin", user);
-      //   this.setUser(resp.data.token);
+      this.setUser(resp.data.token);
       console.log(resp.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  signUp = async (user) => {
-    try {
-      const resp = await api.post("/signup", user);
-      //   this.setUser(resp.data.token);
-    } catch (error) {}
-  };
-  signOut = () => {
-    // delete api.defaults.headers.common.Authorization;
-    // localStorage.removeItem("myToken");
-    this.user = null;
-  };
+  //   signUp = async (user) => {
+  //     try {
+  //       const resp = await api.post("/signup", user);
+  //       //   this.setUser(resp.data.token);
+  //     } catch (error) {}
+  //   };
+  //   signOut = () => {
+  //     // delete api.defaults.headers.common.Authorization;
+  //     // localStorage.removeItem("myToken");
+  //     this.user = null;
+  //   };
 }
 
 const authstore = new AuthStore();
