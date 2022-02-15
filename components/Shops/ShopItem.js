@@ -1,13 +1,7 @@
 import React from "react";
-import { Button } from "native-base";
-import {
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  Image,
-  Alert,
-  Pressable,
-} from "react-native";
+import { Center, VStack } from "native-base";
+import { Text, SafeAreaView, Image, Pressable } from "react-native";
+import styles from "./shopStyles";
 
 const ShopItem = ({ shop, navigation }) => {
   return (
@@ -18,40 +12,15 @@ const ShopItem = ({ shop, navigation }) => {
           navigation.navigate("Details", { shop: shop });
         }}
       >
-        <Image style={styles.shopImage} source={{ uri: shop.image }} />
-        <Text style={styles.textShop}>{shop.name}</Text>
+        <VStack style={styles.vsto}>
+          <Center style={styles.shops} bg="#F5EEDC" rounded="lg" shadow={3}>
+            <Image style={styles.shopImage} source={{ uri: shop.image }} />
+            <Text style={styles.textShop}>{shop.name}</Text>
+          </Center>
+        </VStack>
       </Pressable>
     </SafeAreaView>
   );
 };
 
 export default ShopItem;
-
-const styles = StyleSheet.create({
-  shopImage: {
-    top: 4,
-    width: 150,
-    height: 100,
-    alignSelf: "center",
-  },
-  container: {
-    flex: 1,
-  },
-  textShop: {
-    fontSize: 30,
-    textAlign: "center",
-    marginRight: 30,
-  },
-  button: {
-    width: "50%",
-    alignSelf: "center",
-  },
-  list: {
-    display: "flex",
-    margin: 5,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    borderWidth: 2,
-  },
-});

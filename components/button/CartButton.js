@@ -6,8 +6,9 @@ const CartButton = () => {
   const navigation = useNavigation();
   return (
     <View>
-      <Icon.Button
+      <Icon
         name="shopping-cart"
+        color="#FF6464"
         size={30}
         onPress={() => navigation.navigate("CartList")}
       />

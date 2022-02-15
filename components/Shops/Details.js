@@ -1,10 +1,10 @@
 import React from "react";
-import { StyleSheet, Text, SafeAreaView, Image } from "react-native";
+import { Text, SafeAreaView, Image } from "react-native";
 import shopStore from "../../Store/shopStore";
 import ProductList from "../Products/ProductList";
 import { observer } from "mobx-react";
 import { Spinner, View } from "native-base";
-import CartButton from "../button/CartButton";
+import styles from "./shopStyles";
 
 const Details = ({ route }) => {
   if (shopStore.loading) {
@@ -32,33 +32,3 @@ const Details = ({ route }) => {
 };
 
 export default observer(Details);
-
-const styles = StyleSheet.create({
-  shopDetailImage: {
-    width: "70%",
-    height: 150,
-    alignSelf: "center",
-    marginTop: 10,
-    borderWidth: 5,
-  },
-  prodText: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginLeft: 10,
-    marginTop: 20,
-  },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  shopTitle: {
-    width: "100%",
-    backgroundColor: "#F9E4D4",
-    fontSize: 20,
-    height: 40,
-
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-});

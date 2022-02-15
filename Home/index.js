@@ -1,7 +1,7 @@
 import { Button } from "native-base";
 import React from "react";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
-
+import styles from "./styles";
 const Home = ({ navigation }) => {
   return (
     <View>
@@ -21,10 +21,10 @@ const Home = ({ navigation }) => {
 
 export default Home;
 
-const styles = StyleSheet.create({
-  btn: {
-    width: "50%",
-    alignSelf: "center",
-    top: "50%",
-  },
-});
+// const styles = StyleSheet.create({
+//   btn: {
+//     width: "50%",
+//     alignSelf: "center",
+//     top: "50%",
+//   },
+// });

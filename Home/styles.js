@@ -14,9 +14,13 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
   },
-  appbar: {
-    backgroundColor: "#52B4D1",
-    height: 100,
-    width: "100%",
+
+  btn: {
+    width: "50%",
+    alignSelf: "center",
+    top: "50%",
+    backgroundColor: "#9C0F48",
   },
 });
+
+export default styles;

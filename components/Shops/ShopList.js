@@ -4,6 +4,7 @@ import shopStore from "../../Store/shopStore";
 import ShopItem from "./ShopItem";
 import { observer } from "mobx-react";
 import { Spinner } from "native-base";
+import styles from "./shopStyles";
 
 const ShopList = ({ navigation }) => {
   if (shopStore.loading) {
@@ -25,11 +26,3 @@ const ShopList = ({ navigation }) => {
 };
 
 export default observer(ShopList);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
