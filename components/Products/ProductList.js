@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { View } from "react-native";
+import styles from "./productStyles";
 
 import ProductItem from "./ProductItem";
 
@@ -11,13 +12,3 @@ const ProductList = ({ products }) => {
 };
 
 export default ProductList;
-
-const styles = StyleSheet.create({
-  products: {
-    marginTop: 10,
-    display: "flex",
-    justifyContent: "center",
-    flexDirection: "row",
-    flexWrap: "wrap",
-  },
-});

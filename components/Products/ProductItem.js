@@ -1,13 +1,7 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  SafeAreaView,
-  Pressable,
-} from "react-native";
+import { Text, View, Image, Pressable } from "react-native";
 import cartStore from "../../Store/cartStore";
+import styles from "./productStyles";
 
 const ProductItem = ({ product }) => {
   const handlePress = () => {
@@ -30,10 +24,3 @@ const ProductItem = ({ product }) => {
 };
 
 export default ProductItem;
-
-const styles = StyleSheet.create({
-  productName: {
-    fontSize: 20,
-  },
-  productImage: { width: 100, height: 100, marginRight: 20, borderWidth: 5 },
-});

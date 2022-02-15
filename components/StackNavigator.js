@@ -1,21 +1,20 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
 import ShopList from "./Shops/ShopList";
 import Details from "./Shops/Details";
 import CartList from "./Cart/CartList";
-
 import Home from "../Home";
 import CartButton from "./button/CartButton";
+import OrderList from "./Order/OrderList";
+import Signin from "./authentication/Signin";
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
   return (
     <>
       <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName="Signin"
         screenOptions={{
           headerRight: () => <CartButton />,
           headerStyle: {
@@ -37,6 +36,12 @@ const StackNavigator = () => {
           })}
         />
         <Stack.Screen name="CartList" component={CartList} />
+        <Stack.Screen name="OrderList" component={OrderList} />
+        <Stack.Screen
+          name="Signin"
+          component={Signin}
+          options={{ headerTitle: "Sign In" }}
+        />
       </Stack.Navigator>
     </>
   );
