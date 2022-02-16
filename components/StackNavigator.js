@@ -8,13 +8,14 @@ import Home from "../Home";
 import CartButton from "./button/CartButton";
 import OrderList from "./Order/OrderList";
 import Signin from "./authentication/Signin";
+import Signup from "./authentication/Signup";
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
   return (
     <>
       <Stack.Navigator
-        initialRouteName="Signin"
+        initialRouteName="Signup"
         screenOptions={{
           headerRight: () => <CartButton />,
           headerStyle: {
@@ -41,6 +42,11 @@ const StackNavigator = () => {
           name="Signin"
           component={Signin}
           options={{ headerTitle: "Sign In" }}
+        />
+        <Stack.Screen
+          name="Signup"
+          component={Signup}
+          options={{ headerTitle: "Sign Up" }}
         />
       </Stack.Navigator>
     </>

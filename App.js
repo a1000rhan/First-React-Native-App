@@ -5,15 +5,13 @@ import { NativeBaseProvider } from "native-base";
 
 import { NavigationContainer } from "@react-navigation/native";
 import StackNavigator from "./components/StackNavigator";
-
+import TabNavigator from "./components/TabNavigator";
 export default function App() {
   return (
     <>
       <NavigationContainer>
-        <NativeBaseProvider style={styles.container}>
-          <View style={styles.image}>
-            <StackNavigator />
-          </View>
+        <NativeBaseProvider>
+          <TabNavigator />
         </NativeBaseProvider>
       </NavigationContainer>
     </>

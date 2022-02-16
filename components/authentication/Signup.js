@@ -1,15 +1,18 @@
 import { Input, Stack, FormControl, Button } from "native-base";
 
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { observer } from "mobx-react";
+import { StyleSheet, View, Text } from "react-native";
 import authstore from "../../Store/authStore";
+import { observer } from "mobx-react";
 
-const Signin = ({ navigation }) => {
-  const [user, setUser] = useState({ username: "", password: "" });
+const Signup = ({ navigation }) => {
+  const [user, setUser] = useState({ username: "", email: "", password: "" });
 
   const handleUsername = (event) => {
     setUser({ ...user, username: event });
+  };
+  const handleEmail = (event) => {
+    setUser({ ...user, email: event });
   };
   const handlePassword = (event) => {
     setUser({ ...user, password: event });
@@ -17,7 +20,7 @@ const Signin = ({ navigation }) => {
 
   const handleSubmit = () => {
     console.log(user);
-    authstore.signIn(user);
+    authstore.signUp(user);
     authstore.user && navigation.replace("Home");
   };
   return (
@@ -35,6 +38,17 @@ const Signin = ({ navigation }) => {
             />
           </Stack>
           <Stack>
+            <FormControl.Label>email</FormControl.Label>
+            <Input
+              onChangeText={handleEmail}
+              variant="underlined"
+              value={user.email}
+              p={2}
+              type="email"
+              placeholder="Password"
+            />
+          </Stack>
+          <Stack>
             <FormControl.Label>Password</FormControl.Label>
             <Input
               onChangeText={handlePassword}
@@ -46,12 +60,23 @@ const Signin = ({ navigation }) => {
             />
           </Stack>
         </Stack>
-        <Button onPress={handleSubmit}>Sign In</Button>
+        <Button onPress={handleSubmit}>Sign Up</Button>
       </FormControl>
+      <Text>
+        I have already and{" "}
+        <Text
+          style={{ color: "#52B4D1", fontWeight: "bold" }}
+          onPress={() => {
+            navigation.push("Signin");
+          }}
+        >
+          Account
+        </Text>
+      </Text>
     </Stack>
   );
 };
 
-export default observer(Signin);
+export default observer(Signup);
 
 const styles = StyleSheet.create({});

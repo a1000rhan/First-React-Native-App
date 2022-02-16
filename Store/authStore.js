@@ -36,12 +36,14 @@ class AuthStore {
     }
   };
 
-  //   signUp = async (user) => {
-  //     try {
-  //       const resp = await api.post("/signup", user);
-  //       //   this.setUser(resp.data.token);
-  //     } catch (error) {}
-  //   };
+  signUp = async (user) => {
+    try {
+      const resp = await api.post("/signup", user);
+      this.setUser(resp.data.token);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   //   signOut = () => {
   //     // delete api.defaults.headers.common.Authorization;
   //     // localStorage.removeItem("myToken");
