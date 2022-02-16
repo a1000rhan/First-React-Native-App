@@ -6,9 +6,10 @@ class ProductStore {
     makeAutoObservable(this);
   }
   products = [];
-  fetchShops = async () => {
+  fetchProducts = async () => {
     try {
       const res = await api.get("/products");
+
       this.products = res.data;
     } catch (e) {
       console.log(e);
@@ -16,6 +17,6 @@ class ProductStore {
   };
 }
 const productStore = new ProductStore();
-productStore.fetchShops();
+productStore.fetchProducts();
 
 export default productStore;

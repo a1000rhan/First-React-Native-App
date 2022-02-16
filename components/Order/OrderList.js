@@ -13,6 +13,7 @@ const OrderList = () => {
   return (
     <Center flex={1} px="3">
       <VStack space="5">{orderList}</VStack>
+      <Text>Hello</Text>
     </Center>
   );
 };

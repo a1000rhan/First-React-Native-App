@@ -1,7 +1,7 @@
 import { Input, Stack, FormControl, Button } from "native-base";
 
 import React, { useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, Text, Alert } from "react-native";
 import authstore from "../../Store/authStore";
 import { observer } from "mobx-react";
 
@@ -21,7 +21,6 @@ const Signup = ({ navigation }) => {
   const handleSubmit = () => {
     console.log(user);
     authstore.signUp(user);
-    authstore.user && navigation.replace("Home");
   };
   return (
     <Stack space={4} w="100%" alignItems="center">
@@ -35,6 +34,7 @@ const Signup = ({ navigation }) => {
               variant="underlined"
               p={2}
               placeholder="Username"
+              required
             />
           </Stack>
           <Stack>
@@ -46,6 +46,8 @@ const Signup = ({ navigation }) => {
               p={2}
               type="email"
               placeholder="Password"
+              required
+              autocomplete="off"
             />
           </Stack>
           <Stack>
@@ -57,13 +59,14 @@ const Signup = ({ navigation }) => {
               p={2}
               type="password"
               placeholder="Password"
+              required
             />
           </Stack>
         </Stack>
         <Button onPress={handleSubmit}>Sign Up</Button>
       </FormControl>
       <Text>
-        I have already and{" "}
+        I have already and an{" "}
         <Text
           style={{ color: "#52B4D1", fontWeight: "bold" }}
           onPress={() => {

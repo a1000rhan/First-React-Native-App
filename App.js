@@ -4,7 +4,6 @@ import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { NativeBaseProvider } from "native-base";
 
 import { NavigationContainer } from "@react-navigation/native";
-import StackNavigator from "./components/StackNavigator";
 import TabNavigator from "./components/TabNavigator";
 export default function App() {
   return (

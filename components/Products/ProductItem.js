@@ -5,7 +5,11 @@ import styles from "./productStyles";
 
 const ProductItem = ({ product }) => {
   const handlePress = () => {
-    cartStore.addItemToCart(product._id);
+    const newItem = {
+      product: product,
+      quantity: product.quantity,
+    };
+    cartStore.addItemToCart(newItem);
   };
   return (
     <View>

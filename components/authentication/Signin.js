@@ -1,7 +1,7 @@
 import { Input, Stack, FormControl, Button } from "native-base";
 
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Alert } from "react-native";
 import { observer } from "mobx-react";
 import authstore from "../../Store/authStore";
 
@@ -17,8 +17,7 @@ const Signin = ({ navigation }) => {
 
   const handleSubmit = () => {
     console.log(user);
-    authstore.signIn(user);
-    authstore.user && navigation.replace("Home");
+    authstore.signIn(user, navigation);
   };
   return (
     <Stack space={4} w="100%" alignItems="center">

@@ -4,6 +4,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import StackNavigator from "./StackNavigator";
 import OrdersList from "./Order/OrderList";
 import Icon from "react-native-vector-icons/FontAwesome";
+import authstore from "../Store/authStore";
+import { observer } from "mobx-react";
 
 const TabNavigator = () => {
   const Tab = createBottomTabNavigator();
@@ -23,18 +25,20 @@ const TabNavigator = () => {
           ),
         }}
       />
-      <Tab.Screen
-        name="Order"
-        component={OrdersList}
-        options={{
-          tabBarLabel: "Orders",
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="shopping-cart" color={color} size={size} />
-          ),
-        }}
-      />
+      {authstore.user && (
+        <Tab.Screen
+          name="OrderList"
+          component={OrdersList}
+          options={{
+            tabBarLabel: "Orders",
+            tabBarIcon: ({ color, size }) => (
+              <Icon name="shopping-cart" color={{ color }} size={size} />
+            ),
+          }}
+        />
+      )}
     </Tab.Navigator>
   );
 };
 
-export default TabNavigator;
+export default observer(TabNavigator);

@@ -1,33 +1,13 @@
 import { makeAutoObservable } from "mobx";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import api from "./api";
+import authstore from "./authStore";
 
 class CartStore {
   constructor() {
     makeAutoObservable(this);
   }
-  items = [
-    {
-      product: {
-        _id: "6182a8b31bd7fa38942fdf23",
-        name: "Cookie",
-        price: 5,
-        image:
-          "https://www.cookingclassy.com/wp-content/uploads/2014/06/chocolate-chip-cookie-16.jpg",
-      },
-      quantity: 5,
-    },
-    {
-      product: {
-        _id: "6182a8b31bd7fa46652fdf88",
-        name: "Another cookie",
-        price: 15,
-        image:
-          "https://www.cookingclassy.com/wp-content/uploads/2014/06/chocolate-chip-cookie-16.jpg",
-      },
-      quantity: 3,
-    },
-  ];
+  items = [];
 
   addItemToCart = async (newItem) => {
     try {
@@ -36,7 +16,7 @@ class CartStore {
       );
       if (foundItem) foundItem.quantity = newItem.quantity;
       else this.items.push(newItem);
-      console.log(newItem);
+
       await AsyncStorage.setItem("myCart", JSON.stringify(this.items));
     } catch (e) {
       console.log(e);
@@ -56,16 +36,32 @@ class CartStore {
       console.log(e);
     }
   };
+
   removeItemFromCart = async (productId) => {
     this.items = this.items.filter((item) => item.product._id !== productId);
     await AsyncStorage.setItem("myCart", JSON.stringify(this.items));
   };
+
   checkout = async () => {
     try {
-      const items = this.items.map((item) => {
-        return { ...item, product: item.product._id };
+      console.log(
+        "🚀 ~ file: cartStore.js ~ line 69 ~ CartStore ~ newitems ~ this.items",
+        this.items
+      );
+      const newitems = this.items.map((item) => {
+        return {
+          ...item,
+          product: item.product._id,
+          owner: authstore.user._id,
+        };
       });
-      const res = await api.post("/checkout", items);
+
+      const res = await api.post("/checkout", newitems);
+      console.log(
+        "🚀 ~ file: cartStore.js ~ line 81 ~ CartStore ~ checkout= ~ res",
+        res.data
+      );
+
       this.items = [];
 
       await AsyncStorage.removeItem("myCart");

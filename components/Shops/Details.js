@@ -16,7 +16,6 @@ const Details = ({ route }) => {
   }
 
   const shop = route.params.shop;
-  console.log(shop);
 
   return (
     <View>
