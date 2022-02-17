@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginTop: 10,
     borderWidth: 5,
+    borderRadius: 10,
   },
   prodText: {
     fontSize: 20,

@@ -9,13 +9,18 @@ import CartButton from "./button/CartButton";
 import OrderList from "./Order/OrderList";
 import Signin from "./authentication/Signin";
 import Signup from "./authentication/Signup";
+import authstore from "../Store/authStore";
+import ProductDetail from "./Products/ProductDetail";
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
+  if (authstore.loading) {
+    <Text>Loading</Text>;
+  }
   return (
     <>
       <Stack.Navigator
-        initialRouteName="Signup"
+        initialRouteName="Home"
         screenOptions={{
           headerRight: () => <CartButton />,
           headerStyle: {
@@ -36,8 +41,19 @@ const StackNavigator = () => {
             headerTitle: route.params.shop.name,
           })}
         />
+        <Stack.Screen
+          name="ProductDetail"
+          component={ProductDetail}
+          options={({ route }) => ({
+            headerTitle: route.params.product.name,
+          })}
+        />
         <Stack.Screen name="CartList" component={CartList} />
-        <Stack.Screen name="OrderList" component={OrderList} />
+        <Stack.Screen
+          name="OrderList"
+          component={OrderList}
+          options={{ headerTitle: "Order History" }}
+        />
         <Stack.Screen
           name="Signin"
           component={Signin}

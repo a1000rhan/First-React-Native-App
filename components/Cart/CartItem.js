@@ -1,24 +1,21 @@
 import React, { useState } from "react";
 import { Text, View } from "react-native";
-import { Avatar, Button, Center, VStack } from "native-base";
-import NumericInput from "react-native-numeric-input";
+import { Avatar, Button, Center, VStack, useToast } from "native-base";
+
 import cartStore from "../../Store/cartStore";
 import styles from "./cartStyles";
 import { observer } from "mobx-react";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 const CartItem = ({ item }) => {
-  const [quantity, setQuantity] = useState(item.quantity);
+  const toast = useToast();
 
-  const handleAdd = () => {
-    const newItem = {
-      product: item.product,
-      quantity: quantity,
-    };
-    cartStore.addItemToCart(newItem);
-  };
   const handleDelete = () => {
     cartStore.removeItemFromCart(item.product._id);
+    toast.show({
+      title: `${item.product.name} is Deleted`,
+      status: "info",
+    });
   };
 
   return (
@@ -32,21 +29,6 @@ const CartItem = ({ item }) => {
           <Text style={styles.itemText}>{item.product.name}</Text>
           <Text style={styles.priceAndQ}>Price: {item.product.price}, KD</Text>
 
-          <NumericInput
-            value={quantity}
-            rounded
-            totalHeight={30}
-            totalWidth={60}
-            onChange={(value) => setQuantity(value)}
-          />
-          <View style={styles.Btn}>
-            <Icon.Button
-              name="plus"
-              size={20}
-              onPress={handleAdd}
-              backgroundColor="#52B4D1"
-            />
-          </View>
           <View style={styles.Btn}>
             <Icon.Button
               name="trash"

@@ -1,8 +1,14 @@
-import { Button } from "native-base";
+import { Button, Center, Spinner } from "native-base";
 import React from "react";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
+import authstore from "../Store/authStore";
 import styles from "./styles";
 const Home = ({ navigation }) => {
+  if (authstore.loading) {
+    <Center>
+      <Spinner />
+    </Center>;
+  }
   return (
     <View>
       <ImageBackground

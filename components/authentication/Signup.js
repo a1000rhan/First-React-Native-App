@@ -19,7 +19,7 @@ const Signup = ({ navigation }) => {
   };
 
   const handleSubmit = () => {
-    console.log(user);
+    // console.log(user);
     authstore.signUp(user);
   };
   return (

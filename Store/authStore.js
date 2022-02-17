@@ -22,6 +22,7 @@ class AuthStore {
       const decodedToken = decode(token);
       if (Date.now() < decodedToken.exp) {
         this.setUser(token);
+        this.loading = false;
       } else {
         this.signOut();
       }
@@ -31,8 +32,8 @@ class AuthStore {
     try {
       const resp = await api.post("/signin", user);
       await this.setUser(resp.data.token);
+      this.loading = false;
       navigation.replace("Home");
-      console.log(resp.data);
     } catch (error) {
       console.log(error);
     }
@@ -54,5 +55,5 @@ class AuthStore {
 }
 
 const authstore = new AuthStore();
-//authstore.checkForToken();
+authstore.checkForToken();
 export default authstore;

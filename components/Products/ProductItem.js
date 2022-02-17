@@ -2,20 +2,26 @@ import React from "react";
 import { Text, View, Image, Pressable } from "react-native";
 import cartStore from "../../Store/cartStore";
 import styles from "./productStyles";
+import { useNavigation } from "@react-navigation/native";
+import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 
 const ProductItem = ({ product }) => {
+  const navigation = useNavigation();
+
   const handlePress = () => {
-    const newItem = {
-      product: product,
-      quantity: product.quantity,
-    };
-    cartStore.addItemToCart(newItem);
+    // const newItem = {
+    //   product: product,
+    //   quantity: product.quantity,
+    // };
+    // cartStore.addItemToCart(newItem);
+    navigation.navigate("ProductDetail", { product: product });
   };
+
   return (
-    <View>
+    <Card style={styles.card}>
       <Pressable onPress={handlePress}>
-        <Text style={styles.productName}>{product.name}</Text>
-        <Image
+        <Card.Title title={product.name} />
+        <Card.Cover
           source={{
             uri: product.image,
           }}
@@ -23,7 +29,7 @@ const ProductItem = ({ product }) => {
           style={styles.productImage}
         />
       </Pressable>
-    </View>
+    </Card>
   );
 };
 

@@ -9,6 +9,14 @@ class CartStore {
   }
   items = [];
 
+  fetchCart = async () => {
+    try {
+      const cart = await AsyncStorage.getItem("myCart");
+      this.items = cart ? JSON.parse(cart) : [];
+    } catch (e) {
+      console.log(e);
+    }
+  };
   addItemToCart = async (newItem) => {
     try {
       const foundItem = this.items.find(
@@ -28,15 +36,6 @@ class CartStore {
     return total;
   }
 
-  fetchCart = async () => {
-    try {
-      const items = await AsyncStorage.getItem("myCart");
-      this.items = items ? JSON.parse(items) : [];
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   removeItemFromCart = async (productId) => {
     this.items = this.items.filter((item) => item.product._id !== productId);
     await AsyncStorage.setItem("myCart", JSON.stringify(this.items));
@@ -44,23 +43,18 @@ class CartStore {
 
   checkout = async () => {
     try {
-      console.log(
-        "🚀 ~ file: cartStore.js ~ line 69 ~ CartStore ~ newitems ~ this.items",
-        this.items
-      );
-      const newitems = this.items.map((item) => {
-        return {
-          ...item,
-          product: item.product._id,
-          owner: authstore.user._id,
-        };
-      });
+      // const newitems = this.items.map((item) => {
+      //   return {
+      //     ...item,
+      //     owner: authstore.user.id,
+      //   };
+      // });
+      // console.log(
+      //   "🚀 ~ file: cartStore.js ~ line 52 ~ CartStore ~ newitems ~ newitems",
+      //   newitems
+      // );
 
-      const res = await api.post("/checkout", newitems);
-      console.log(
-        "🚀 ~ file: cartStore.js ~ line 81 ~ CartStore ~ checkout= ~ res",
-        res.data
-      );
+      const res = await api.post("/checkout", this.items);
 
       this.items = [];
 

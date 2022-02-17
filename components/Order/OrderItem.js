@@ -4,14 +4,11 @@ import { StyleSheet, Text, View } from "react-native";
 import ProductItem from "../Products/ProductItem";
 
 const OrderItem = ({ order }) => {
-  const products = order.products.map((item) => (
-    <ProductItem product={item.product} />
+  // console.log("🚀 ~ file: OrderItem.js ~ line 7 ~ OrderItem ~ order", order);
+  const products = order.products.map((product) => (
+    <ProductItem product={product} key={order._id} />
   ));
-  return (
-    <VStack w="100%" alignItems="center" space="3">
-      {products}
-    </VStack>
-  );
+  return <View>{products}</View>;
 };
 
 export default OrderItem;

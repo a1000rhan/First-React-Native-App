@@ -16,7 +16,7 @@ const Signin = ({ navigation }) => {
   };
 
   const handleSubmit = () => {
-    console.log(user);
+    // console.log(user);
     authstore.signIn(user, navigation);
   };
   return (
