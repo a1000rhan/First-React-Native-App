@@ -3,8 +3,17 @@ const styles = StyleSheet.create({
   OrderGrid: {
     display: "flex",
     flexDirection: "row",
-    width: "100%",
     flexWrap: "wrap",
+    marginTop: 10,
+    justifyContent: "center",
+  },
+  orderContain: {
+    margin: 10,
+  },
+  txt: {
+    fontSize: 15,
+    fontWeight: "bold",
+    margin: 10,
   },
 });
 

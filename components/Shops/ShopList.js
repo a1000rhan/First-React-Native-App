@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import shopStore from "../../Store/shopStore";
 import ShopItem from "./ShopItem";
 import { observer } from "mobx-react";
-import { Spinner } from "native-base";
+import { ScrollView, Spinner } from "native-base";
 import styles from "./shopStyles";
 
 const ShopList = ({ navigation }) => {
@@ -19,9 +19,9 @@ const ShopList = ({ navigation }) => {
   ));
 
   return (
-    <View>
+    <ScrollView>
       <View>{shopli}</View>
-    </View>
+    </ScrollView>
   );
 };
 

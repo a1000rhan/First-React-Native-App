@@ -23,9 +23,6 @@ const StackNavigator = () => {
         initialRouteName="Home"
         screenOptions={{
           headerRight: () => <CartButton />,
-          headerStyle: {
-            backgroundColor: "#F9E4D4",
-          },
         }}
       >
         <Stack.Screen
@@ -49,11 +46,7 @@ const StackNavigator = () => {
           })}
         />
         <Stack.Screen name="CartList" component={CartList} />
-        <Stack.Screen
-          name="OrderList"
-          component={OrderList}
-          options={{ headerTitle: "Order History" }}
-        />
+
         <Stack.Screen
           name="Signin"
           component={Signin}

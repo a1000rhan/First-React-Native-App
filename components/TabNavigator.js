@@ -30,7 +30,9 @@ const TabNavigator = () => {
           name="OrderList"
           component={OrdersList}
           options={{
+            headerShown: true,
             tabBarLabel: "Orders",
+            headerTitle: "Order History",
             tabBarIcon: ({ color, size }) => (
               <Icon name="shopping-cart" color={{ color }} size={size} />
             ),

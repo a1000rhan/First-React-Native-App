@@ -4,6 +4,7 @@ import cartStore from "../../Store/cartStore";
 import styles from "./productStyles";
 import { useNavigation } from "@react-navigation/native";
 import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
+import { observer } from "mobx-react";
 
 const ProductItem = ({ product }) => {
   const navigation = useNavigation();
@@ -36,4 +37,4 @@ const ProductItem = ({ product }) => {
   );
 };
 
-export default ProductItem;
+export default observer(ProductItem);

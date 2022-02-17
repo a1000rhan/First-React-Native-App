@@ -3,7 +3,7 @@ import { View, Text, Image } from "react-native";
 import { observer } from "mobx-react";
 import shopStore from "../../Store/shopStore";
 import styles from "./productStyles";
-import { Center, HStack, Spinner, useToast } from "native-base";
+import { Center, HStack, ScrollView, Spinner, useToast } from "native-base";
 import NumericInput from "react-native-numeric-input";
 import Icon from "react-native-vector-icons/FontAwesome";
 import cartStore from "../../Store/cartStore";
@@ -31,10 +31,10 @@ const ProductDetail = ({ route }) => {
   };
   const product = route.params.product;
   return (
-    <View>
+    <ScrollView>
       <Image source={{ uri: product.image }} style={styles.detailIamge} />
       <Text style={styles.productNameDetail}>{product.name}</Text>
-
+      <Text>{product.description}</Text>
       <Center style={styles.detailItem}>
         <Text> price: {product.price} Kd</Text>
         <NumericInput
@@ -53,7 +53,7 @@ const ProductDetail = ({ route }) => {
           />
         </View>
       </Center>
-    </View>
+    </ScrollView>
   );
 };
 
