@@ -12,30 +12,41 @@ const CartButton = () => {
   const navigation = useNavigation();
   return (
     <View>
-      {authstore.user && (
-        <>
-          {cartStore.totalQuantity !== 0 && (
-            <Badge
-              bg="red.400"
-              colorScheme="danger"
-              rounded="999px"
-              mb={-2}
-              zIndex={1}
-              variant="solid"
-              alignSelf="flex-end"
-              _text={{
-                fontSize: 12,
-              }}
-            >
-              {cartStore.totalQuantity}
-            </Badge>
-          )}
+      {authstore.user ? (
+        <View style={styles.topbutton}>
+          <Icon name="sign-out" size={30} onPress={authstore.signOut} />
+          <>
+            {cartStore.totalQuantity !== 0 && (
+              <Badge
+                bg="red.400"
+                colorScheme="danger"
+                rounded="999px"
+                mb={-2}
+                zIndex={1}
+                variant="solid"
+                alignSelf="flex-end"
+                _text={{
+                  fontSize: 12,
+                }}
+              >
+                {cartStore.totalQuantity}
+              </Badge>
+            )}
 
+            <Icon
+              name="shopping-cart"
+              size={30}
+              style={styles.cartButton}
+              onPress={() => navigation.navigate("CartList")}
+            />
+          </>
+        </View>
+      ) : (
+        <>
           <Icon
-            name="shopping-cart"
+            name="user"
             size={30}
-            style={styles.cartButton}
-            onPress={() => navigation.navigate("CartList")}
+            onPress={() => navigation.navigate("Signup")}
           />
         </>
       )}
@@ -45,4 +56,10 @@ const CartButton = () => {
 
 export default observer(CartButton);
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  topbutton: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+});

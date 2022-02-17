@@ -28,11 +28,15 @@ class AuthStore {
       }
     }
   };
-  signIn = async (user, navigation) => {
+  signIn = async (user, navigation, toast) => {
     try {
       const resp = await api.post("/signin", user);
       await this.setUser(resp.data.token);
       this.loading = false;
+      toast.show({
+        title: "hello",
+        status: "info",
+      });
       navigation.replace("Home");
     } catch (error) {
       console.log(error);

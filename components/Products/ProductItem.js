@@ -20,7 +20,6 @@ const ProductItem = ({ product }) => {
   return (
     <Card style={styles.card}>
       <Pressable onPress={handlePress}>
-        <Card.Title title={product.name} />
         <Card.Cover
           source={{
             uri: product.image,
@@ -28,6 +27,10 @@ const ProductItem = ({ product }) => {
           alt="image"
           style={styles.productImage}
         />
+        <Card.Content>
+          <Title>{product.name} </Title>
+          <Paragraph style={styles.cardText}>{product.description}</Paragraph>
+        </Card.Content>
       </Pressable>
     </Card>
   );

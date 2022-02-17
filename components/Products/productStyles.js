@@ -38,6 +38,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
   },
+  cardText: {
+    width: 100,
+    height: 70,
+  },
 });
 
 export default styles;

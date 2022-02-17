@@ -10,8 +10,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const OrderList = () => {
   const orderList = orderStore.orders.map((order) => (
-    <OrderItem order={order} key={order._id} />
+    <OrderItem order={order.order} key={order._id} />
   ));
+
   return (
     <SafeAreaView style={styles.OrderGrid}>
       <ScrollView>{orderList}</ScrollView>

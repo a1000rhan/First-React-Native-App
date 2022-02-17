@@ -1,13 +1,14 @@
-import { Input, Stack, FormControl, Button } from "native-base";
-
+import { Input, Stack, FormControl, Button, useToast } from "native-base";
 import React, { useState } from "react";
 import { StyleSheet, View, Alert } from "react-native";
 import { observer } from "mobx-react";
 import authstore from "../../Store/authStore";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const Signin = ({ navigation }) => {
   const [user, setUser] = useState({ username: "", password: "" });
-
+  const [showPassword, setShowPassword] = useState(true);
+  const toast = useToast();
   const handleUsername = (event) => {
     setUser({ ...user, username: event });
   };
@@ -17,7 +18,7 @@ const Signin = ({ navigation }) => {
 
   const handleSubmit = () => {
     // console.log(user);
-    authstore.signIn(user, navigation);
+    authstore.signIn(user, navigation, toast);
   };
   return (
     <Stack space={4} w="100%" alignItems="center">
@@ -40,8 +41,16 @@ const Signin = ({ navigation }) => {
               variant="underlined"
               value={user.password}
               p={2}
-              type="password"
+              type={showPassword ? "password" : "text"}
               placeholder="Password"
+              InputRightElement={
+                <Icon
+                  style={{ marginRight: 10 }}
+                  name={showPassword ? "eye" : "eye-slash"}
+                  size={20}
+                  onPress={() => setShowPassword(!showPassword)}
+                />
+              }
             />
           </Stack>
         </Stack>

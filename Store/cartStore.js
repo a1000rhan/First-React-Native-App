@@ -43,18 +43,19 @@ class CartStore {
 
   checkout = async () => {
     try {
-      // const newitems = this.items.map((item) => {
-      //   return {
-      //     ...item,
-      //     owner: authstore.user.id,
-      //   };
-      // });
-      // console.log(
-      //   "🚀 ~ file: cartStore.js ~ line 52 ~ CartStore ~ newitems ~ newitems",
-      //   newitems
-      // );
+      const order = this.items.map((item) => {
+        return {
+          ...item,
+          product: item.product._id,
+        };
+      });
 
-      const res = await api.post("/checkout", this.items);
+      console.log(
+        "🚀 ~ file: cartStore.js ~ line 52 ~ CartStore ~ newitems ~ newitems",
+        order
+      );
+
+      const res = await api.post("/checkout", { order: order });
 
       this.items = [];
 

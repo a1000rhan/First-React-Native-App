@@ -4,9 +4,9 @@ import { StyleSheet, Text, View } from "react-native";
 import ProductItem from "../Products/ProductItem";
 
 const OrderItem = ({ order }) => {
-  // console.log("🚀 ~ file: OrderItem.js ~ line 7 ~ OrderItem ~ order", order);
-  const products = order.products.map((product) => (
-    <ProductItem product={product} key={order._id} />
+  console.log("🚀 ~ file: OrderItem.js ~ line 7 ~ OrderItem ~ order", order);
+  const products = order.map((product) => (
+    <ProductItem product={product.product} key={order._id} />
   ));
   return <View>{products}</View>;
 };
