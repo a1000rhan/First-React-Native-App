@@ -34,7 +34,11 @@ const ProductDetail = ({ route }) => {
     <ScrollView>
       <Image source={{ uri: product.image }} style={styles.detailIamge} />
       <Text style={styles.productNameDetail}>{product.name}</Text>
-      <Text>{product.description}</Text>
+      <Text style={{ fontWeight: "bold" }}> Description: </Text>
+      <Text style={{ margin: 15, textAlign: "left" }}>
+        {" "}
+        {product.description}
+      </Text>
       <Center style={styles.detailItem}>
         <Text> price: {product.price} Kd</Text>
         <NumericInput
